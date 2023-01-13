@@ -1,27 +1,20 @@
 import { makeAutoObservable } from "mobx";
 
 export default class User {
-  ticket: string;
+  count: number;
   constructor() {
     /**
      * state
      */
-    this.ticket = ""; // 登录凭证ticket
+    this.count = 0; // 登录凭证count
 
     makeAutoObservable(this);
   }
 
   /**
-   * computed
-   */
-  get isLogin() {
-    return !!this.ticket;
-  }
-
-  /**
    * action
    */
-  setTicket(val: string) {
-    this.ticket = val || "";
+  add() {
+    this.count++;
   }
 }
