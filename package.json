@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/mockjs": "^1.0.7",
     "antd": "^5.1.4",
+    "axios": "^1.3.3",
     "mobx": "^6.7.0",
     "mobx-react": "^7.6.0",
+    "mockjs": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

@@ -1,0 +1,12 @@
+.nav {
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  .user {
+    cursor: pointer;
+  }
+}

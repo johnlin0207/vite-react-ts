@@ -1,6 +1,6 @@
 # config
 .idea
-.vscode
+# .vscode
 
 # Logs
 logs

@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import StoreContext from '@/contexts/storeContext';
 import store from '@/store';
-import Router from '@/router';
+import App from './app';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <StoreContext.Provider value={store}>
-      <Router />
+      <App />
     </StoreContext.Provider>
   </React.StrictMode>
 );

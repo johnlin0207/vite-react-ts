@@ -1,10 +1,14 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import '@/css/login.scss';
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    navigate('/');
   };
 
   const onFinishFailed = (errorInfo: any) => {
