@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
 const { Header, Content, Footer, Sider } = Layout;
 
 const App: React.FC = () => {

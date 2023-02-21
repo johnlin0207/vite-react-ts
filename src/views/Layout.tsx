@@ -19,6 +19,15 @@ const App: React.FC = () => {
   };
   const selectedKey = items1[0]?.key as string;
   const location = useLocation();
+
+  // 如果刚进入是/则跳转至/datamana
+  useEffect(() => {
+    if (location.pathname === '/') {
+      console.log(location.pathname);
+      navigate('/datamana');
+    }
+  }, []);
+
   useEffect(() => {
     const level1obj = location.pathname.match(/\/\w+/);
     const level1path = level1obj ? level1obj[0] : '';

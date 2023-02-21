@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
 import React, { useEffect } from 'react';
-import BaseLayout from '@/views/BaseLayout';
+import BaseLayout from '@/views/Layout';
 import Login from '@/views/Login';
 import { useNavigate } from 'react-router-dom';
+import Datamana from '@/views/module1';
 
 const lazyLoad = (src: any) => (
   <Suspense fallback={<>Loading</>}>{React.createElement(lazy(src))}</Suspense>
@@ -23,7 +24,7 @@ export default [
     children: [
       {
         path: 'datamana',
-        element: lazyLoad(() => import('@/views/module1')),
+        element: <Datamana />,
         children: [
           {
             path: '',
