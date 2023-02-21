@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+const Random = Mock.Random;
 
 //get请求
 Mock.mock('/user', 'get', (options) => {
@@ -15,8 +16,17 @@ Mock.mock('/user', 'get', (options) => {
 Mock.mock('/list', 'get', (options) => {
   //接受参数：是JSON格式，需要转换成对象
   const page = JSON.parse(options.body).page;
+  const pageSize = JSON.parse(options.body).pageSize;
   const ret = Mock.mock({
-    'list|20': [{ 'id|+1': 1, name: '@cname' }],
+    [`list|${pageSize}`]: [
+      {
+        'id|+1': 1,
+        key: '@id',
+        name: '@cname',
+        'age|1-100': 100,
+        address: Random.region(),
+      },
+    ],
   });
 
   if (page > 3) {

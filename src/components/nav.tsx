@@ -1,29 +1,44 @@
-import '../css/nav.scss';
+import { useState } from 'react';
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Dropdown, Space } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Dropdown, Space, Modal } from 'antd';
+import { useNavigate, Link } from 'react-router-dom';
+import '@/css/nav.scss';
 
 function Nav() {
   const navigate = useNavigate();
 
   const logout = () => {
-    const result = confirm('退出吗');
-    if (result) {
-      navigate('/login');
-    }
+    navigate('/login');
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    logout();
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   const items: MenuProps['items'] = [
     {
       key: '1',
-      label: <span onClick={logout}>登出</span>,
+      label: <span onClick={showModal}>登出</span>,
     },
   ];
 
   return (
     <div className="nav">
-      <div className="logo">xx管理系统</div>
+      <Link to={'/'}>
+        <div className="logo">xx管理系统</div>
+      </Link>
       <div className="user">
         <Dropdown menu={{ items }}>
           <a onClick={(e) => e.preventDefault()}>
@@ -34,6 +49,14 @@ function Nav() {
           </a>
         </Dropdown>
       </div>
+      <Modal
+        title="提示"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>是否登出？</p>
+      </Modal>
     </div>
   );
 }

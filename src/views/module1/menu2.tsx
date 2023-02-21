@@ -3,7 +3,6 @@ import { useStore, observer } from '@/hooks/storeHook';
 import '@/css/menu/menu2.scss';
 
 const Menu2 = () => {
-  const [count, setCount] = useState(0);
   const { userStore } = useStore();
 
   const onSetStore = () => {

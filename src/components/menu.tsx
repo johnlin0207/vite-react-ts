@@ -54,7 +54,7 @@ const App: React.FC = () => {
   const { pathname } = useLocation();
 
   const onClick: MenuProps['onClick'] = (e) => {
-    navigate(e.key);
+    navigate('/menu' + e.key);
   };
 
   return (
@@ -65,7 +65,7 @@ const App: React.FC = () => {
       defaultOpenKeys={['sub1']}
       mode="inline"
       items={items}
-      selectedKeys={[pathname]}
+      selectedKeys={['/menu' + pathname]}
     />
   );
 };
