@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, Avatar, Space, Dropdown } from 'antd';
+import { Layout, Menu, Avatar, Space, Dropdown, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const { Header, Footer } = Layout;
@@ -14,9 +14,19 @@ const items1: MenuProps['items'] = [
 
 const App: React.FC = () => {
   const [path, setPath] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const onClick: MenuProps['onClick'] = (e) => {
     navigate(e.key);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+    navigate('/login');
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
   const selectedKey = items1[0]?.key as string;
   const location = useLocation();
@@ -34,10 +44,14 @@ const App: React.FC = () => {
     setPath(level1path);
   }, [location]);
 
+  const logout = () => {
+    setIsModalOpen(true);
+  };
+
   const items: MenuProps['items'] = [
     {
       key: '1',
-      label: '登出',
+      label: <span onClick={logout}>登出</span>,
     },
   ];
 
@@ -60,6 +74,14 @@ const App: React.FC = () => {
             </Space>
           </Dropdown>
         </div>
+        <Modal
+          title="提示"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <p>确定退出登录吗？</p>
+        </Modal>
       </Header>
       <Outlet />
       <Footer style={{ textAlign: 'center' }}>
