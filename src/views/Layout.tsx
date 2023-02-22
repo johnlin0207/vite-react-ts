@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Avatar, Space, Dropdown } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const { Header, Footer } = Layout;
 const items1: MenuProps['items'] = [
@@ -23,7 +24,6 @@ const App: React.FC = () => {
   // 如果刚进入是/则跳转至/datamana
   useEffect(() => {
     if (location.pathname === '/') {
-      console.log(location.pathname);
       navigate('/datamana');
     }
   }, []);
@@ -33,6 +33,13 @@ const App: React.FC = () => {
     const level1path = level1obj ? level1obj[0] : '';
     setPath(level1path);
   }, [location]);
+
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: '登出',
+    },
+  ];
 
   return (
     <Layout>
@@ -46,9 +53,18 @@ const App: React.FC = () => {
           selectedKeys={[path]}
           items={items1}
         />
+        <div className="user">
+          <Dropdown menu={{ items }} placement="bottomRight" arrow>
+            <Space wrap size={16}>
+              <Avatar size="large" icon={<UserOutlined />} />
+            </Space>
+          </Dropdown>
+        </div>
       </Header>
       <Outlet />
-      <Footer style={{ textAlign: 'center' }}>xxx@2023版权所有</Footer>
+      <Footer style={{ textAlign: 'center' }}>
+        Copyright © 2023 xxx有限责任公司 版权所有
+      </Footer>
     </Layout>
   );
 };

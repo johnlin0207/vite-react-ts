@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Datamana from '@/views/module1';
 
 const lazyLoad = (src: any) => (
-  <Suspense fallback={<>Loading</>}>{React.createElement(lazy(src))}</Suspense>
+  <Suspense fallback={<></>}>{React.createElement(lazy(src))}</Suspense>
 );
 
 function Redirect({ to }: { to: string }) {
