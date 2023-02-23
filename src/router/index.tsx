@@ -1,21 +1,13 @@
 import { lazy, Suspense } from 'react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import BaseLayout from '@/views/Layout';
 import Login from '@/views/Login';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Datamana from '@/views/module1';
 
 const lazyLoad = (src: any) => (
   <Suspense fallback={<></>}>{React.createElement(lazy(src))}</Suspense>
 );
-
-function Redirect({ to }: { to: string }) {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate(to);
-  });
-  return null;
-}
 
 export default [
   {
@@ -58,6 +50,6 @@ export default [
   { path: '/404', element: <p>404</p> },
   {
     path: '*',
-    element: <Redirect to="/404" />,
+    element: <Navigate to="/404" />,
   },
 ];
