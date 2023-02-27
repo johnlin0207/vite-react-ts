@@ -1,16 +1,12 @@
 import routers from '@/router';
-import { BrowserRouter, Routes, useRoutes, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import '@/css/app.scss';
-
-const GetRoutes = () => {
-  const routes = useRoutes(routers);
-  return routes;
-};
+import Router from '@/router';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <GetRoutes />
+      <Router />
     </BrowserRouter>
   );
 }

@@ -1,15 +1,14 @@
-import { lazy, Suspense } from 'react';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
 import BaseLayout from '@/views/Layout';
 import Login from '@/views/Login';
-import { Navigate } from 'react-router-dom';
 import Datamana from '@/views/module1';
 
 const lazyLoad = (src: any) => (
   <Suspense fallback={<></>}>{React.createElement(lazy(src))}</Suspense>
 );
 
-export default [
+const routerList = [
   {
     path: '/',
     element: <BaseLayout />,
@@ -53,3 +52,10 @@ export default [
     element: <Navigate to="/404" />,
   },
 ];
+
+const GenRoutes = () => {
+  const routes = useRoutes(routerList);
+  return routes;
+};
+
+export default GenRoutes;
