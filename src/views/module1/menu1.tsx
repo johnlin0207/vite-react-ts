@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import axios from 'axios';
+import request from '@/utils/request';
 import '@/mock/user.js';
 
 interface DataType {
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   const pageSize = 10;
 
   const fetch = (page: number) => {
-    axios({
+    request({
       method: 'get',
       url: '/list',
       data: {

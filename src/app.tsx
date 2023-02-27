@@ -1,4 +1,4 @@
-import routers from '@/router';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import '@/css/app.scss';
 import Router from '@/router';
