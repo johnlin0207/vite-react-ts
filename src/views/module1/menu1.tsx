@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import request from '@/utils/request';
+import { applyVueInReact, applyPureVueInReact } from 'veaury';
+import BasicVueComponent from './Basic';
+// Use HOC 'applyVueInReact'
+const BasicWithNormal = applyVueInReact(BasicVueComponent);
+// Use HOC 'applyPureVueInReact'
+const BasicWithPure = applyPureVueInReact(BasicVueComponent);
 
 interface DataType {
   key: React.Key;
@@ -25,7 +31,7 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const App: React.FC = () => {
+const App = () => {
   const [listData, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const pageSize = 10;
@@ -49,19 +55,17 @@ const App: React.FC = () => {
   useEffect(() => {
     fetch(1);
   }, []);
+  const [foo] = useState('Hello!');
 
   return (
-    <div>
-      <Table
-        pagination={{ pageSize, total }}
-        columns={columns}
-        dataSource={listData}
-        onChange={(pagination) => {
-          const { current } = pagination;
-          fetch(current!);
-        }}
-      />
-    </div>
+    <>
+      <BasicWithNormal foo={foo}>
+        <div>the default slot</div>
+      </BasicWithNormal>
+      <BasicWithPure foo={foo}>
+        <div>the default slot</div>
+      </BasicWithPure>
+    </>
   );
 };
 
