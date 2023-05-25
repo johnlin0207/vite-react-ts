@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import BaseLayout from '@/views/layout';
+import BaseLayout from '@/views/Layout';
 import Login from '@/views/login';
 import Datamana from '@/views/module1';
 
